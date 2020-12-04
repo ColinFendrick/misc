@@ -99,3 +99,9 @@ console.log( // Just the number 6
 		return acc;
 	}, 0)
 );
+
+const mapArrToList = list => arr => arr.forEach(el => list.add(el));
+
+const arrList = new List();
+mapArrToList(arrList)([1, 4, 9, 16, 25]);
+console.log(arrList.getLastNode());
