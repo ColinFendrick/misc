@@ -58,7 +58,7 @@ class LinkedList():
         prev.next = Head.next
         Head = None
 
-def AddList(list, llist = None):
+def CreateLinkedList(list, llist = None):
     if (llist is None):
         llist = LinkedList()
     
@@ -69,7 +69,7 @@ def AddList(list, llist = None):
 
 
 
-lst = AddList([1, 4, 5, 6])
+lst = CreateLinkedList([1, 4, 5, 6])
 lst.Inbetween(lst.head, 2)
 lst.Inbetween(lst.head.next, 3)
 lst.listprint()
