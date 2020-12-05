@@ -15,8 +15,6 @@ class LinkedList():
 
     def AtBegining(self, newdata):
         NewNode = Node(newdata)
-
-        # Update the new nodes next val to existing node
         NewNode.nextval = self.headval
         self.headval = NewNode
 
@@ -30,15 +28,25 @@ class LinkedList():
             laste = laste.nextval
         laste.nextval=NewNode
 
+    def Inbetween(self, middle_node, newdata):
+        if middle_node is None:
+            print("The mentioned node is absent")
+            return
+
+        NewNode = Node(newdata)
+        NewNode.nextval = middle_node.nextval
+        middle_node.nextval = NewNode
+
+
 lst = LinkedList()
 lst.headval = Node("Mon")
-e2 = Node("Tue")
-e3 = Node("Wed")
-
-lst.headval.nextval = e2
-e2.nextval = e3
+lst.headval.nextval = Node("Tue")
 
 lst.AtBegining("Sun")
-lst.AtEnd("Thurs")
+lst.AtEnd("Sat")
+lst.Inbetween(lst.headval.nextval.nextval, "Wed")
+lst.Inbetween(lst.headval.nextval.nextval.nextval, "Thurs")
+lst.Inbetween(lst.headval.nextval.nextval.nextval.nextval, "Fri")
+
 
 lst.listprint()
