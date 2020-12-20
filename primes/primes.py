@@ -15,6 +15,18 @@ bases = {
 	'ADMIN': 41
 }
 
+class pipe:
+	def __init__(self, value, func=None):
+		self.value = value
+		self.func = func
+	def __getitem__(self, func):
+		return pipe(self.value, func)        
+	def __call__(self, *args, **kwargs):
+		return pipe(self.func(self.value, *args, **kwargs))
+	def __repr__(self):
+		return 'pipe(%s, %s)' % (self.value, self.func)
+
+
 def prime_fac(n): 
 	res = []
 	divisor = 2
@@ -44,4 +56,7 @@ def uniques(arr):
 
 roles = bases['VIEWLOG'] * bases['VIEWLOG'] * bases['CHANGENICKNAME'] * bases['CHANGENICKNAME'] * bases['MANAGEWEBHOOKS'] * bases['ADMIN']
 
-print(map_primes(uniques(prime_fac(roles))))
+# print(map_primes(uniques(prime_fac(roles))))
+print(
+	pipe(roles)[prime_fac]()[uniques]()[map_primes]().value
+)
