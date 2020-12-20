@@ -30,5 +30,12 @@ const primeFac = n => {
 };
 
 const mapPrimes = primes => primes.map(p => Object.keys(bases).find(key => bases[key] === p));
+const filter = arr => arr.filter((val, i, self) => self.indexOf(val) === i);
+const roles = bases.VIEWLOG
+	* bases.VIEWLOG
+	* bases.CHANGENICKNAME
+	* bases.CHANGENICKNAME
+	* bases.MANAGEWEBHOOKS
+	* bases.ADMIN;
 
-((...fns) => x => fns.reduce((v, f) => f(v), x))(primeFac, mapPrimes, console.log)(bases.VIEWLOG * bases.CHANGENICKNAME);
+((...fns) => x => fns.reduce((v, f) => f(v), x))(primeFac, mapPrimes, filter, console.log)(roles);
