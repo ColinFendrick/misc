@@ -38,4 +38,10 @@ const roles = bases.VIEWLOG
 	* bases.MANAGEWEBHOOKS
 	* bases.ADMIN;
 
+const isPrime = num => {
+	for (var i = 2; i < num; i++)
+		if (num % i === 0) return false;
+	return num > 1;
+};
+
 ((...fns) => x => fns.reduce((v, f) => f(v), x))(primeFac, mapPrimes, filter, console.log)(roles);
