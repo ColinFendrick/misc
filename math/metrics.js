@@ -8,7 +8,7 @@ const metricSpace = (range, metric) => ({ range, metric });
 const realNumbers = n => typeof n === 'number';
 const integers = n => Number.isInteger(n);
 const coordinates = c => c.every(n => integers(n));
-const polarCoordinates = ([r, theta]) => realNumbers(r) && (-Math.PI <= theta <= Math.PI);
+const polarCoordinates = ([r, theta]) => realNumbers(r) && (-Math.PI <= theta) && (theta <= Math.PI);
 
 const realMetric = (x1, x2) => Math.abs(x2 - x1);
 const cartesianMetric = ([x1, y1], [x2, y2]) => Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
