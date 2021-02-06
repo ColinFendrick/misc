@@ -1,0 +1,22 @@
+{
+  "name": "misc",
+  "version": "1.0.0",
+  "description": "just random stuff in here",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ColinFendrick/misc.git"
+  },
+  "author": "colin.fendrick",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ColinFendrick/misc/issues"
+  },
+  "homepage": "https://github.com/ColinFendrick/misc#readme",
+  "dependencies": {
+    "mathjs": "^9.2.0"
+  }
+}
