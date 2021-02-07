@@ -36,7 +36,8 @@ const ourFourspace = [
 ];
 
 const ourFourspaceSubset = applyToSubspace(logarithmicSpace(ourFourspace))(
-	[1]
+	[2, 2, 2],
+	[201, 2, 2]
 );
 
 
