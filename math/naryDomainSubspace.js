@@ -30,5 +30,14 @@ const ourSubset = applyToSubspace(logarithmicSpace(ourSubspace))(
 	[2, 4]
 );
 
+const ourFourspace = [
+	[[0, 200], [0, 200], [0, 2000]],
+	[0, 10000]
+];
 
-console.log(ourSubset);
+const ourFourspaceSubset = applyToSubspace(logarithmicSpace(ourFourspace))(
+	[1]
+);
+
+
+console.log(ourFourspaceSubset);
