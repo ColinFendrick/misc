@@ -1,8 +1,8 @@
 const mathjs = require('mathjs');
 
 // Generates an application of a metric over a space
-const create = (range, metric) => space => ({
-	range: range(space),
+const create = (domain, metric) => space => ({
+	domain: domain(space),
 	metric: metric(space)
 });
 
@@ -17,11 +17,11 @@ const cdfNormal = ([r1, r2]) => x => {
 const studentTSpace = create(realClosedSubset, cdfNormal);
 
 const apply = ({
-	range,
+	domain,
 	metric
-} = studentTSpace([1, 100])) => (...vals) => vals.filter(val => range(val))
+} = studentTSpace([1, 100])) => (...vals) => vals.filter(val => domain(val))
 	.map(val => [val, metric(val)]);
 
-const studentT = apply(studentTSpace([1, 100]))(99);
+const myScores = apply(studentTSpace([1, 100]))(99);
 
-console.log(studentT);
+console.log(myScores);
