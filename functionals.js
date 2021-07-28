@@ -94,6 +94,17 @@ export const mergeDeep = (...objects) => {
   }, {});
 };
 
+/*
+  const add = (a, b, c) => a + b + c;
+  const add11 = partiallyApply(add, 5, 6);
+  const add2 = partiallyApply(add, 2);
+  add11(13) // 24
+  add2(3, 4) // 9
+*/
+const partiallyApply = (fn, ...args) => function (...remainingArgs) {
+  return fn.apply(this, args.concat(remainingArgs));
+};
+
 const functionals = {
   compose,
   pipe,
@@ -104,7 +115,8 @@ const functionals = {
   set,
   curry,
   isEmpty,
-  mergeDeep
+  mergeDeep,
+  partiallyApply
 };
 
 export default functionals;
