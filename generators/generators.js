@@ -1,10 +1,10 @@
 function* generatorMath(i) {
-	console.log(`before a yield: ${i}`);
-	const j = 5 * (yield(i * 10));
-	console.log(`after first yield: ${j}`);
-	const k = yield (2 * j / 4);
-	console.log(`after second yield: ${k}`);
-	return (i, j, k);
+  console.log(`before a yield: ${i}`);
+  const j = 5 * (yield i * 10);
+  console.log(`after first yield: ${j}`);
+  const k = yield (2 * j) / 4;
+  console.log(`after second yield: ${k}`);
+  return i, j, k;
 }
 
 const generateMath = generatorMath(10);

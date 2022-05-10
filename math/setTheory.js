@@ -1,11 +1,13 @@
-const inc = set => set ? [set, [set]] : [set];
+const inc = (set) => (set ? [set, [set]] : [set]);
 
-const ten = (() => {
+const create = (n) => {
   let res = 0;
-  for (let i = 0; i < 11; i++) {
+  for (let i = 0; i < n; i++) {
     res = inc(res);
   }
-  return res
-})();
+  return res;
+};
 
-console.log(ten)
+for (let i = 0; i < 5; i++) {
+  console.log(create(i));
+}

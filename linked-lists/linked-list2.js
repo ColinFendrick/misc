@@ -1,84 +1,76 @@
 function Node(value, prev) {
-	this.value = value;
-	this.prev = prev;
-	this.next = null;
+  this.value = value;
+  this.prev = prev;
+  this.next = null;
 }
 
 function List() {
-	this.root = null;
+  this.root = null;
 
-	this.getLastNode = function() {
-		let cursor = this.root;
+  this.getLastNode = function () {
+    let cursor = this.root;
 
-		while (cursor && cursor.next)
-			cursor = cursor.next;
+    while (cursor && cursor.next) cursor = cursor.next;
 
+    return cursor;
+  };
 
-		return cursor;
-	};
+  this.add = function (value) {
+    const lastNode = this.getLastNode();
+    const newNode = new Node(value, lastNode);
 
-	this.add = function(value) {
-		const lastNode = this.getLastNode();
-		const newNode = new Node(value, lastNode);
+    if (!lastNode) this.root = newNode;
+    else lastNode.next = newNode;
 
-		if (!lastNode)
-			this.root = newNode;
-		else
-			lastNode.next = newNode;
+    return newNode;
+  };
 
+  this.map = function (fn) {
+    const res = new List();
 
-		return newNode;
-	};
+    let cursor = this.root;
+    while (cursor) {
+      res.add(fn(cursor.value));
+      cursor = cursor.next;
+    }
 
-	this.map = function(fn) {
-		const res = new List();
+    return res;
+  };
 
-		let cursor = this.root;
-		while (cursor) {
-			res.add(fn(cursor.value));
-			cursor = cursor.next;
-		}
+  this.filter = function (fn) {
+    const res = new List();
 
-		return res;
-	};
+    for (let node of this) if (fn(node)) res.add(node);
 
-	this.filter = function(fn) {
-		const res = new List();
+    return res;
+  };
 
-		for (let node of this)
-			if (fn(node))
-				res.add(node);
+  this.reduce = function (fn, acc) {
+    for (let i of this) acc = fn(acc, i);
 
-		return res;
-	};
+    return acc;
+  };
 
-	this.reduce = function(fn, acc) {
-		for (let i of this)
-			acc = fn(acc, i);
+  this[Symbol.iterator] = function () {
+    let current = this.root;
+    let res;
 
-		return acc;
-	};
-
-	this[Symbol.iterator] = function() {
-		let current = this.root;
-		let res;
-
-		return {
-			next: function() {
-				if (current) {
-					res = {
-						value: current.value,
-						done: false
-					};
-					current = current.next;
-				} else
-					res = {
-						done: true
-					};
-				return res;
-			}
-		};
-	};
+    return {
+      next: function () {
+        if (current) {
+          res = {
+            value: current.value,
+            done: false,
+          };
+          current = current.next;
+        } else
+          res = {
+            done: true,
+          };
+        return res;
+      },
+    };
+  };
 }
 
 const list = new List();
@@ -88,19 +80,20 @@ list.add(3);
 
 console.log(list.getLastNode());
 console.log(
-	list.map(i => i * 2).getLastNode() // Node with value 6
+  list.map((i) => i * 2).getLastNode() // Node with value 6
 );
 console.log(
-	list.filter(i => i >= 2).getLastNode() // NOde with value 3
+  list.filter((i) => i >= 2).getLastNode() // NOde with value 3
 );
-console.log( // Just the number 6
-	list.reduce((acc, i) => {
-		acc += i;
-		return acc;
-	}, 0)
+console.log(
+  // Just the number 6
+  list.reduce((acc, i) => {
+    acc += i;
+    return acc;
+  }, 0)
 );
 
-const mapArrToList = list => arr => arr.forEach(el => list.add(el));
+const mapArrToList = (list) => (arr) => arr.forEach((el) => list.add(el));
 
 const arrList = new List();
 mapArrToList(arrList)([1, 4, 9, 16, 25]);
